@@ -92,7 +92,7 @@ const ProductList = () => {
 
   const onFormSubmit = (form) => {
     const { title, price, salePrice, sku, stock } = form;
-    
+
     let submittedData = {
       id: data.length + 1,
       name: title,
@@ -412,120 +412,120 @@ const ProductList = () => {
                 {currentItems.length > 0
                   ? currentItems.map((item) => {
                     const categoryList = []
-                      item.category.forEach((currentElement) => { 
+                    item.category.forEach((currentElement) => {
                       categoryList.push(currentElement.label)
-                     })
-                      return (
-                        <DataTableItem key={item.id}>
-                          <DataTableRow className="nk-tb-col-check">
-                            <div className="custom-control custom-control-sm custom-checkbox notext">
-                              <input
-                                type="checkbox"
-                                className="custom-control-input"
-                                defaultChecked={item.check}
-                                id={item.id + "uid1"}
-                                key={Math.random()}
-                                onChange={(e) => onSelectChange(e, item.id)}
-                              />
-                              <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
-                            </div>
-                          </DataTableRow>
-                          <DataTableRow size="sm">
-                            <span className="tb-product">
-                              <img src={item.img ? item.img : ProductH} alt="product" className="thumb" />
-                              <span className="title">{item.name}</span>
-                            </span>
-                          </DataTableRow>
-                          <DataTableRow>
-                            <span className="tb-sub">{item.sku}</span>
-                          </DataTableRow>
-                          <DataTableRow>
-                            <span className="tb-sub">$ {item.price}</span>
-                          </DataTableRow>
-                          <DataTableRow>
-                            <span className="tb-sub">{item.stock}</span>
-                          </DataTableRow>
-                          <DataTableRow size="md">
-                            <span className="tb-sub">
-                              {categoryList.join(", ")}
-                            </span>
-                          </DataTableRow>
-                          <DataTableRow size="md">
-                            <div className="asterisk tb-asterisk">
-                              <a
-                                href="#asterisk"
-                                className={item.fav ? "active" : ""}
-                                onClick={(ev) => ev.preventDefault()}
-                              >
-                                <Icon name="star" className="asterisk-off"></Icon>
-                                <Icon name="star-fill" className="asterisk-on"></Icon>
-                              </a>
-                            </div>
-                          </DataTableRow>
-                          <DataTableRow className="nk-tb-col-tools">
-                            <ul className="nk-tb-actions gx-1 my-n1">
-                              <li className="me-n1">
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    tag="a"
-                                    href="#more"
-                                    onClick={(ev) => ev.preventDefault()}
-                                    className="dropdown-toggle btn btn-icon btn-trigger"
-                                  >
-                                    <Icon name="more-h"></Icon>
-                                  </DropdownToggle>
-                                  <DropdownMenu end>
-                                    <ul className="link-list-opt no-bdr">
-                                      <li>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#edit"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                            onEditClick(item.id);
-                                            toggle("edit");
-                                          }}
-                                        >
-                                          <Icon name="edit"></Icon>
-                                          <span>Edit Product</span>
-                                        </DropdownItem>
-                                      </li>
-                                      <li>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#view"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                            onEditClick(item.id);
-                                            toggle("details");
-                                          }}
-                                        >
-                                          <Icon name="eye"></Icon>
-                                          <span>View Product</span>
-                                        </DropdownItem>
-                                      </li>
-                                      <li>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#remove"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                            deleteProduct(item.id);
-                                          }}
-                                        >
-                                          <Icon name="trash"></Icon>
-                                          <span>Remove Product</span>
-                                        </DropdownItem>
-                                      </li>
-                                    </ul>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </li>
-                            </ul>
-                          </DataTableRow>
-                        </DataTableItem>
-                      );
                     })
+                    return (
+                      <DataTableItem key={item.id}>
+                        <DataTableRow className="nk-tb-col-check">
+                          <div className="custom-control custom-control-sm custom-checkbox notext">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              defaultChecked={item.check}
+                              id={item.id + "uid1"}
+                              key={Math.random()}
+                              onChange={(e) => onSelectChange(e, item.id)}
+                            />
+                            <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
+                          </div>
+                        </DataTableRow>
+                        <DataTableRow size="sm">
+                          <span className="tb-product">
+                            <img src={item.img ? item.img : ProductH} alt="product" className="thumb" />
+                            <span className="title">{item.name}</span>
+                          </span>
+                        </DataTableRow>
+                        <DataTableRow>
+                          <span className="tb-sub">{item.sku}</span>
+                        </DataTableRow>
+                        <DataTableRow>
+                          <span className="tb-sub">$ {item.price}</span>
+                        </DataTableRow>
+                        <DataTableRow>
+                          <span className="tb-sub">{item.stock}</span>
+                        </DataTableRow>
+                        <DataTableRow size="md">
+                          <span className="tb-sub">
+                            {categoryList.join(", ")}
+                          </span>
+                        </DataTableRow>
+                        <DataTableRow size="md">
+                          <div className="asterisk tb-asterisk">
+                            <a
+                              href="#asterisk"
+                              className={item.fav ? "active" : ""}
+                              onClick={(ev) => ev.preventDefault()}
+                            >
+                              <Icon name="star" className="asterisk-off"></Icon>
+                              <Icon name="star-fill" className="asterisk-on"></Icon>
+                            </a>
+                          </div>
+                        </DataTableRow>
+                        <DataTableRow className="nk-tb-col-tools">
+                          <ul className="nk-tb-actions gx-1 my-n1">
+                            <li className="me-n1">
+                              <UncontrolledDropdown>
+                                <DropdownToggle
+                                  tag="a"
+                                  href="#more"
+                                  onClick={(ev) => ev.preventDefault()}
+                                  className="dropdown-toggle btn btn-icon btn-trigger"
+                                >
+                                  <Icon name="more-h"></Icon>
+                                </DropdownToggle>
+                                <DropdownMenu end>
+                                  <ul className="link-list-opt no-bdr">
+                                    <li>
+                                      <DropdownItem
+                                        tag="a"
+                                        href="#edit"
+                                        onClick={(ev) => {
+                                          ev.preventDefault();
+                                          onEditClick(item.id);
+                                          toggle("edit");
+                                        }}
+                                      >
+                                        <Icon name="edit"></Icon>
+                                        <span>Edit Product</span>
+                                      </DropdownItem>
+                                    </li>
+                                    <li>
+                                      <DropdownItem
+                                        tag="a"
+                                        href="#view"
+                                        onClick={(ev) => {
+                                          ev.preventDefault();
+                                          onEditClick(item.id);
+                                          toggle("details");
+                                        }}
+                                      >
+                                        <Icon name="eye"></Icon>
+                                        <span>View Product</span>
+                                      </DropdownItem>
+                                    </li>
+                                    <li>
+                                      <DropdownItem
+                                        tag="a"
+                                        href="#remove"
+                                        onClick={(ev) => {
+                                          ev.preventDefault();
+                                          deleteProduct(item.id);
+                                        }}
+                                      >
+                                        <Icon name="trash"></Icon>
+                                        <span>Remove Product</span>
+                                      </DropdownItem>
+                                    </li>
+                                  </ul>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
+                            </li>
+                          </ul>
+                        </DataTableRow>
+                      </DataTableItem>
+                    );
+                  })
                   : null}
               </DataTableBody>
               <div className="card-inner">
@@ -592,7 +592,7 @@ const ProductList = () => {
                           {...register('price', { required: "This is required" })}
                           className="form-control"
                           value={formData.price}
-                          onChange={(e) => setFormData({ ...formData, price: e.target.value })}/>
+                          onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
                         {errors.price && <span className="invalid">{errors.price.message}</span>}
                       </div>
                     </div>
@@ -607,8 +607,8 @@ const ProductList = () => {
                           type="number"
                           className="form-control"
                           {...register('salePrice')}
-                          value={formData.salePrice} 
-                          onChange={(e) => setFormData({ ...formData, salePrice: e.target.value })}/>
+                          value={formData.salePrice}
+                          onChange={(e) => setFormData({ ...formData, salePrice: e.target.value })} />
                         {errors.salePrice && <span className="invalid">{errors.salePrice.message}</span>}
                       </div>
                     </div>
@@ -640,7 +640,7 @@ const ProductList = () => {
                           className="form-control"
                           {...register('sku', { required: "This is required" })}
                           value={formData.sku}
-                          onChange={(e) => setFormData({ ...formData, sku: e.target.value })}/>
+                          onChange={(e) => setFormData({ ...formData, sku: e.target.value })} />
                         {errors.sku && <span className="invalid">{errors.sku.message}</span>}
                       </div>
                     </div>
@@ -656,7 +656,7 @@ const ProductList = () => {
                           options={categoryOptions}
                           value={formData.category}
                           onChange={(value) => setFormData({ ...formData, category: value })}
-                          //ref={register({ required: "This is required" })}
+                        //ref={register({ required: "This is required" })}
                         />
                         {errors.category && <span className="invalid">{errors.category.message}</span>}
                       </div>
@@ -759,9 +759,8 @@ const ProductList = () => {
       </Modal>
 
       <SimpleBar
-        className={`nk-add-product toggle-slide toggle-slide-right toggle-screen-any ${
-          view.add ? "content-active" : ""
-        }`}
+        className={`nk-add-product toggle-slide toggle-slide-right toggle-screen-any ${view.add ? "content-active" : ""
+          }`}
       >
         <BlockHead>
           <BlockHeadContent>
@@ -786,8 +785,8 @@ const ProductList = () => {
                       {...register('name', {
                         required: "This field is required",
                       })}
-                      value={formData.name} 
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}/>
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                     {errors.name && <span className="invalid">{errors.name.message}</span>}
                   </div>
                 </div>
@@ -802,8 +801,8 @@ const ProductList = () => {
                       type="number"
                       {...register('price', { required: "This is required" })}
                       className="form-control"
-                      value={formData.price} 
-                      onChange={(e) => setFormData({ ...formData, price: e.target.value })}/>
+                      value={formData.price}
+                      onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
                     {errors.price && <span className="invalid">{errors.price.message}</span>}
                   </div>
                 </div>
@@ -818,8 +817,8 @@ const ProductList = () => {
                       type="number"
                       className="form-control"
                       {...register('salePrice')}
-                      value={formData.salePrice} 
-                      onChange={(e) => setFormData({ ...formData, salePrice: e.target.value })}/>
+                      value={formData.salePrice}
+                      onChange={(e) => setFormData({ ...formData, salePrice: e.target.value })} />
                     {errors.salePrice && <span className="invalid">{errors.salePrice.message}</span>}
                   </div>
                 </div>
@@ -850,8 +849,8 @@ const ProductList = () => {
                       type="text"
                       className="form-control"
                       {...register('sku', { required: "This is required" })}
-                      value={formData.sku} 
-                      onChange={(e) => setFormData({ ...formData, sku: e.target.value })}/>
+                      value={formData.sku}
+                      onChange={(e) => setFormData({ ...formData, sku: e.target.value })} />
                     {errors.sku && <span className="invalid">{errors.sku.message}</span>}
                   </div>
                 </div>
@@ -868,7 +867,7 @@ const ProductList = () => {
                       options={categoryOptions}
                       onChange={(value) => setFormData({ ...formData, category: value })}
                       value={formData.category}
-                      //ref={register({ required: "This is required" })}
+                    //ref={register({ required: "This is required" })}
                     />
                     {errors.category && <span className="invalid">{errors.category.message}</span>}
                   </div>
