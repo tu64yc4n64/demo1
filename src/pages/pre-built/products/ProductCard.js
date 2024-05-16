@@ -34,7 +34,7 @@ const ProductCard = () => {
   const [data, setData] = contextData;
 
   const [smOption, setSmOption] = useState(false);
-  const [formData,setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     img: null,
     title: "",
@@ -72,7 +72,7 @@ const ProductCard = () => {
   useEffect(() => {
     view ? document.body.classList.add("toggle-shown") : document.body.classList.remove("toggle-shown");
   }, [view])
-  
+
   // Changing state value when searching name
   useEffect(() => {
     if (filter !== "") {
@@ -322,9 +322,9 @@ const ProductCard = () => {
                       type="text"
                       {...register('name', { required: "This field is required" })}
                       className="form-control"
-                      value={formData.name} 
+                      value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      />
+                    />
                     {errors.name && <span className="invalid">{errors.name.message}</span>}
                   </div>
                 </div>
@@ -387,9 +387,9 @@ const ProductCard = () => {
                       type="text"
                       className="form-control"
                       {...register('type', { required: "This field is required" })}
-                      value={formData.type} 
+                      value={formData.type}
                       onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                      />
+                    />
                     {errors.type && <span className="invalid">{errors.type.message}</span>}
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import Content from "../../../layout/content/Content";
 import ProductH from "../../../images/product/h.png";
 import Dropzone from "react-dropzone";
 import SimpleBar from "simplebar-react";
+
 import {
   Block,
   BlockHead,
@@ -26,9 +27,29 @@ import { productData, categoryOptions } from "./ProductData";
 import { useForm } from "react-hook-form";
 import { Modal, ModalBody } from "reactstrap";
 import { RSelect } from "../../../components/Component";
+import axios from "axios"
+
+
+
+const BASE_URL = "http://localhost:3001"
 
 const ProductList = () => {
-  const [data, setData] = useState(productData);
+
+
+
+  const [data, setData] = useState([]);
+  const getAllProduct = async () => {
+    const response = await axios.get(BASE_URL + "/productData")
+    setData(response.data.reverse())
+  }
+
+
+
+  useEffect(() => {
+    getAllProduct()
+  }, [])
+
+
   const [sm, updateSm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -90,53 +111,59 @@ const ProductList = () => {
     reset({});
   };
 
-  const onFormSubmit = (form) => {
-    const { title, price, salePrice, sku, stock } = form;
+  const onFormSubmit = async (form) => {
+    const { name, price, salePrice, sku, stock } = form;
 
-    let submittedData = {
-      id: data.length + 1,
-      name: title,
-      img: files.length > 0 ? files[0].preview : ProductH,
-      sku: sku,
-      price: price,
-      salePrice: salePrice,
-      stock: stock,
-      category: formData.category,
-      fav: false,
-      check: false,
-    };
-    setData([submittedData, ...data]);
-    setView({ open: false });
-    setFiles([]);
-    resetForm();
+    try {
+      const response = await axios.post(BASE_URL + "/productData", {
+        name: name,
+        img: files.length > 0 ? files[0].preview : ProductH,
+        sku: sku,
+        price: price,
+        salePrice: salePrice,
+        stock: stock,
+        category: formData.category,
+        fav: false,
+        check: false,
+      });
+
+      setData([response.data, ...data]);
+      setView({ open: false });
+      setFiles([]);
+      resetForm();
+    } catch (error) {
+      console.error("Error creating product:", error);
+    }
   };
 
-  const onEditSubmit = () => {
-    let submittedData;
-    let newItems = data;
-    let index = newItems.findIndex((item) => item.id === editId);
 
-    newItems.forEach((item) => {
-      if (item.id === editId) {
-        submittedData = {
-          id: editId,
-          name: formData.name,
-          img: files.length > 0 ? files[0].preview : item.img,
-          sku: formData.sku,
-          price: formData.price,
-          salePrice: formData.salePrice,
-          stock: formData.stock,
-          category: formData.category,
-          fav: false,
-          check: false,
-        };
-      }
-    });
-    newItems[index] = submittedData;
-    //setData(newItems);
-    resetForm();
-    setView({ edit: false, add: false });
+  const onEditSubmit = async (editItem) => {
+    try {
+      const response = await axios.put(BASE_URL + "/productData/" + editId, {
+        id: editId,
+        name: formData.name,
+        img: files.length > 0 ? files[0].preview : editItem.img,
+        sku: formData.sku,
+        price: formData.price,
+        salePrice: formData.salePrice,
+        stock: formData.stock,
+        category: formData.category,
+        fav: false,
+        check: false,
+      });
+
+
+      const updatedItem = response.data;
+      setData(data.map(item => item.id === editId ? updatedItem : item));
+
+      resetForm();
+      setView({ edit: false, add: false });
+    } catch (error) {
+      console.error("Error updating product:", error);
+
+    }
   };
+
 
   // function that loads the want to editted data
   const onEditClick = (id) => {
@@ -188,7 +215,9 @@ const ProductList = () => {
   };
 
   // function to delete a product
-  const deleteProduct = (id) => {
+  const deleteProduct = async (id) => {
+
+    await axios.delete(BASE_URL + "/productData/" + id)
     let defaultData = data;
     defaultData = defaultData.filter((item) => item.id !== id);
     setData([...defaultData]);
@@ -432,7 +461,7 @@ const ProductList = () => {
                         </DataTableRow>
                         <DataTableRow size="sm">
                           <span className="tb-product">
-                            <img src={item.img ? item.img : ProductH} alt="product" className="thumb" />
+                            <img src={item.img} alt="product" className="thumb" />
                             <span className="title">{item.name}</span>
                           </span>
                         </DataTableRow>
