@@ -1,7 +1,7 @@
 {
   "productData": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Pink Fitness Tracker",
       "img": "",
       "sku": "UY3749",
@@ -21,7 +21,7 @@
       "check": false
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Purple Smartwatch",
       "img": "../src/images/product/b.png",
       "sku": "UY3750",
@@ -45,7 +45,7 @@
       "check": false
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Black Mi Band Smartwatch",
       "img": "../src/images/product/c.png",
       "sku": "UY3751",
@@ -65,7 +65,7 @@
       "check": false
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Black Headphones",
       "img": "../src/images/product/d.png",
       "sku": "UY3752",
@@ -85,27 +85,7 @@
       "check": false
     },
     {
-      "id": 5,
-      "name": "Iphone 7 Headphones",
-      "img": "../src/images/product/e.png",
-      "sku": "UY3753",
-      "price": "199.49",
-      "stock": 81,
-      "category": [
-        {
-          "label": "Headphones",
-          "value": "Headphones"
-        },
-        {
-          "label": "Gadgets",
-          "value": "Gadgets"
-        }
-      ],
-      "fav": false,
-      "check": false
-    },
-    {
-      "id": 6,
+      "id": "6",
       "name": "Purple Blue Gradient iPhone Case",
       "img": "../src/images/product/f.png",
       "sku": "UY3754",
@@ -125,7 +105,7 @@
       "check": false
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Plug In Speaker",
       "img": "../src/images/product/g.png",
       "sku": "UY3755",
@@ -145,7 +125,7 @@
       "check": false
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Wireless Waterproof Speaker",
       "img": "../src/images/product/h.png",
       "sku": "UY3756",
@@ -162,10 +142,10 @@
         }
       ],
       "fav": false,
-      "check": false
+      "check": true
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "AliExpress Fitness Trackers",
       "img": "../src/images/product/i.png",
       "sku": "UY3758",
@@ -182,27 +162,7 @@
         }
       ],
       "fav": false,
-      "check": false
-    },
-    {
-      "id": 10,
-      "name": "Pool Party Drink Holder",
-      "img": "../src/images/product/j.png",
-      "sku": "UY3757",
-      "price": "9.49",
-      "stock": 73,
-      "category": [
-        {
-          "label": "Men",
-          "value": "Men"
-        },
-        {
-          "label": "Holder",
-          "value": "Holder"
-        }
-      ],
-      "fav": false,
-      "check": false
+      "check": true
     }
   ]
 }

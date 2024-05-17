@@ -192,7 +192,19 @@ const ProductList = () => {
   }, [formData]);
 
   // selects all the products
-  const selectorCheck = (e) => {
+  const selectorCheck = async (e) => {
+
+    const existingData = await axios.get(BASE_URL + "/productData/")
+    const response = await axios.put(BASE_URL + "/productData/" + id,
+      {
+        ...existingData.data,
+        check: !existingData.data.check
+      }
+    )
+
+    const updatedItem = response.data;
+    setData(data.map(item => item.id === id ? updatedItem : item));
+
     let newData;
     newData = data.map((item) => {
       item.check = e.currentTarget.checked;
@@ -202,11 +214,17 @@ const ProductList = () => {
   };
 
   // selects one product
-  const onSelectChange = (e, id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].check = e.currentTarget.checked;
-    setData([...newData]);
+  const onSelectChange = async (e, id) => {
+    const existingData = await axios.get(BASE_URL + "/productData/" + id)
+    const response = await axios.put(BASE_URL + "/productData/" + id,
+      {
+        ...existingData.data,
+        check: !existingData.data.check
+      }
+    )
+
+    const updatedItem = response.data;
+    setData(data.map(item => item.id === id ? updatedItem : item));
   };
 
   // onChange function for searching name
@@ -224,8 +242,17 @@ const ProductList = () => {
   };
 
   // function to delete the seletected item
-  const selectorDeleteProduct = () => {
+  const selectorDeleteProduct = async () => {
+    const response = (await axios.get(BASE_URL + "/productData?check=1")).data
+
+    const deleteIds = response.map(item => item.id)
+
+    for (const id of deleteIds) {
+      await axios.delete(BASE_URL + "/productData/" + id);
+    }
+
     let newData;
+
     newData = data.filter((item) => item.check !== true);
     setData([...newData]);
   };
